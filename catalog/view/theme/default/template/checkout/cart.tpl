@@ -76,6 +76,13 @@
           }
 
         </style>
+        <script>
+          window.addEventListener("resize", (e)=>{
+            console.log(e.target.outerWidth);
+          }, false);
+
+
+        </script>
 	  <?php /* fix_14 */?>
         <div class="table-responsive">
           <table class="table table-bordered">
