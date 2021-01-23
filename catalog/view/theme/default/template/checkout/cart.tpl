@@ -83,17 +83,55 @@
               inputs.forEach((input)=>{
                 input.name='ex_'+input.name;
               });
+              queryResizer(1);
 
             }else{
               let inputs = document.querySelectorAll(".showonmobile input");
               inputs.forEach((input)=>{
                 input.name='ex_'+input.name;
               });
+              queryResizer(2);
             }
-          })
-          window.addEventListener("resize", (e)=>{
-            console.log(e.target.outerWidth);
-          }, false);
+          });
+          function queryResizer(startWindowState){
+              let windowstate = startWindowState;//1- мобилка   2-десктоп
+            window.addEventListener("resize", (e)=>{
+              let txt1,txt2;
+              let needChange = false;//нужен ли свап
+              if (e.target.outerWidth<800){
+                if (windowstate == 2){
+                  needChange = true;
+                  windowstate = 1;
+                  txt1 = ".hideonmobile";
+                  txt2 = ".showonmobile";
+                }
+              }else {
+                if (windowstate == 1) {
+                  needChange = true;
+                  windowstate = 2;
+                  txt1 = ".showonmobile";
+                  txt2 = ".hideonmobile";
+                }
+              }
+              if (needChange){
+                let qry = txt1+" td input";
+                let inputs = document.querySelectorAll(qry);
+                inputs.forEach((input)=>{
+                  input.name='ex_'+input.name;
+
+                });
+                qry = txt2+" td input"
+                inputs = document.querySelectorAll(qry);
+                inputs.forEach((input)=>{
+                  input.name = input.name.replace('ex_','');
+
+
+                });
+              }
+
+            });
+          }
+
 
 
         </script>
