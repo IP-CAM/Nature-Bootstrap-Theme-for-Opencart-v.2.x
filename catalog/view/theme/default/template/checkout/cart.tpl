@@ -77,6 +77,20 @@
 
         </style>
         <script>
+          window.addEventListener("DOMContentLoaded", function(event) {
+            if (window.outerWidth<800){
+              let inputs = document.querySelectorAll(".hideonmobile input");
+              inputs.forEach((input)=>{
+                input.name='ex_'+input.name;
+              });
+
+            }else{
+              let inputs = document.querySelectorAll(".showonmobile input");
+              inputs.forEach((input)=>{
+                input.name='ex_'+input.name;
+              });
+            }
+          })
           window.addEventListener("resize", (e)=>{
             console.log(e.target.outerWidth);
           }, false);
@@ -199,7 +213,7 @@
                 <td class="text-left"><?php echo $vouchers['description']; ?></td>
                 <td class="text-left"></td>
                 <td class="text-left"><div class="input-group btn-block" style="max-width: 200px;">
-                    <input type="text" name="" value="1" size="1" disabled="disabled" class="form-control" />
+                    <input type="text" name="quantity[<?php echo $product['key']; ?>]" value="1" size="1" disabled="disabled" class="form-control" />
                     <span class="input-group-btn"><button type="button" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger" onclick="voucher.remove('<?php echo $vouchers['key']; ?>');location.reload();"><i class="fa fa-times-circle"></i></button></span></div></td>
                 <td class="text-right"><?php echo $vouchers['amount']; ?></td>
                 <td class="text-right"><?php echo $vouchers['amount']; ?></td>
